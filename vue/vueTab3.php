@@ -58,7 +58,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
         var chartdata = {
             labels: jours,
             datasets: [{
-                label: 'Nombre de vente par jour',
+                label: 'Volume_1_1',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgb(255, 99, 132)',
                 borderWidth: 1,
@@ -66,7 +66,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
             },
 
             {
-                label: 'Nombre de vente par jour (2)',
+                label: 'Volume_1_4',
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgb(54, 162, 235)',
                 borderWidth: 1,
