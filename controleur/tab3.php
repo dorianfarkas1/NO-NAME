@@ -7,4 +7,5 @@ $lesVolumes = getVolumeFacture();
 include "$racine/vue/header.php";
 include "$racine/vue/vueTab3.php";
 include "$racine/vue/footer.php";
+
 ?>
