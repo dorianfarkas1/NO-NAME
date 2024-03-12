@@ -1,0 +1,93 @@
+body {
+  font-family: Arial;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+/* Style pour la table */
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Fusionner les bordures de cellules */
+}
+
+/* Style pour les cellules d'en-tête */
+.table th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Bordure inférieure */
+  border-top: 1px solid #ddd; /* Bordure supérieure */
+}
+
+/* Style pour les cellules de données */
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Bordure inférieure */
+  border-top: 1px solid #ddd; /* Bordure supérieure */
+}
+
+/* Style pour la première colonne (Mois) */
+.table td:first-child,
+.table th:first-child {
+  border-left: 1px solid #ddd; /* Bordure gauche */
+  border-top: 1px solid #ddd; /* Bordure supérieure */
+}
+
+/* Style pour la dernière colonne (Volume 4) */
+.table td:last-child,
+.table th:last-child {
+  border-right: 1px solid #ddd; /* Bordure droite */
+  border-top: 1px solid #ddd; /* Bordure supérieure */
+}
+
+/* Style pour la première ligne */
+.table th:first-child,
+.table td:first-child {
+  border-top: 1px solid #ddd; /* Bordure supérieure */
+}
+
+/* Style pour la dernière ligne */
+.table th:last-child,
+.table td:last-child {
+  border-top: 1px solid #ddd; /* Bordure supérieure */
+  border-bottom: none; /* Supprimer la bordure inférieure pour la dernière ligne */
+}
+
+
+
+
