@@ -3,10 +3,24 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
 ?>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
 <div class="row mt-3">
     <div class="container">
-        <h3> Evolution comparés des volumes facturés entre Janvier 2021 et Avril 2022 </h3>
+        <h3><?= $titre ?></h3>
+        <form action="index.php?action=tab3" method="post">
+            <label for="result">Type de résultat :</label>
+            <select name="result" id="result">
+                <option value="1">Tableau</option>
+                <option value="2">Graphique</option>
+            </select>
+            <button type="submit">Choisir</button>
+        </form>
+        <?php if (!empty($lesVolumesTab)) { ?>
             <div class="tab-content">
+                <h3><?= $result ?></h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -17,7 +31,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($lesVolumes as $volume) { ?>
+                        <?php foreach ($lesVolumesTab as $volume) { ?>
                             <tr>
                                 <td><?= $volume['Mois'] ?></td>
                                 <td><?= $volume['Annee'] ?></td>
@@ -28,23 +42,22 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
                     </tbody>
                 </table>
             </div>
+        <?php } else if(!empty($lesVolumesGraph)){ ?>
+            <div id="chart-container">
+                <h3><?= $result ?></h3>
+                <canvas id="graphCanvas"></canvas>
+            </div>
+    <?php    }?>    
     </div>
 </div>
 
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-
-<div id="chart-container">
-        <canvas id="graphCanvas"></canvas>
-    </div>
 
     
 <script>
     // on lance la fonction showGraph au chargement de la page
     document.addEventListener('DOMContentLoaded', function () {
         // on crée des tableaux de données statiques
-        var volumeData = <?php echo json_encode($lesVolumes); ?>;
+        var volumeData = <?php echo json_encode($lesVolumesGraph); ?>;
         var jours = ["Janvier 2023", "Fevrier 2023", "Mars 2023", "Avril 2023", "Mai 2023", "Juin 2023", "Juillet 2023", "Aout 2023", "Septembre 2023", "Octobre 2023", "Novembre 2023", "Decembre 2023", "Janvier 2024", "Fevrier 2024", "Mars 2024", "Avril 2024"];
         var nombres = [];
         var nombres1 = [];

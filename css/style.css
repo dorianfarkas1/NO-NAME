@@ -39,6 +39,10 @@ body {
   border-top: none;
 }
 
+.tabcontent {
+  display: block;
+}
+
 /* Style pour la table */
 .table {
   width: 100%;

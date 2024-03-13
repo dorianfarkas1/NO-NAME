@@ -8,13 +8,18 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 // on lance la fonction showGraph au chargement de la page 
 document.addEventListener('DOMContentLoaded', function () { 
     // on crée des tableaux de données statiques 
+    var graph = <?php echo json_encode($lesMontantsGraph); ?>;
     var Mois = ["Janvier 2021", "Fevrier 2021", "Mars 2021", "Avril 2021", "Mai 2021", "Juin 2021", "Juillet 2021", "Aout 2021", "Septembre 2021", "Octobre 2021", "Novembre 2021", "Decembre 2021", "Janvier 2022", "Fevrier 2022", "Mars 2022", "Avril 2022"]; 
-    var Montant = [<?php $lesMontants['MontantFacture']?>]; 
+    var Montant = []; 
     // on fabrique à partir des tableaux jours et nombres la structure de données attendue par Chart.js pour un graphique en barres 
+    for (var i in graph) {
+            Montant.push(graph[i].MontantFacture);
+        }
+
     var chartdata = { 
-        labels: jours, 
+        labels: Mois, 
         datasets: [{ 
-            label: 'Evolution Mensuelle des montants facturés', 
+            label: 'Montants Facturés', 
             backgroundColor: 'rgba(255, 99, 132, 0.2)', 
             borderColor: 'rgb(255, 99, 132)', 
             borderWidth: 1, 
@@ -25,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var graphTarget = document.getElementById("graphCanvas"); 
     // on crée le graphique avec Chart.js en lui passant l'élément canvas et les données créées 
     var barGraph = new Chart(graphTarget, { 
-        type: 'bar', 
+        type: 'line', 
         data: chartdata 
         }); 
     }); 
@@ -42,10 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="<?= $client['GrandClientID'] ?>"><?= $client['NomGrandClient'] ?></option>
                 <?php } ?>
             </select>
+            <label for="result">Type de résultat :</label>
+            <select name="result" id="result">
+                <option value="1">Tableau</option>
+                <option value="2">Graphique</option>
+            </select>
             <button type="submit">Choisir</button>
         </form>
 
-        <?php if (!empty($lesMontants)) { ?>
+        <?php if (!empty($lesMontantsTab)) { ?>
             <div class="tab-content">
             <h3>Tableau</h3>
                 <table class="table">
@@ -58,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($lesMontants as $montant) { ?>
+                        <?php foreach ($lesMontantsTab as $montant) { ?>
                             <tr>
                                 <td></td>
                                 <td><?= $montant['Mois'] ?></td>
@@ -69,8 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     </tbody>
                 </table>
             </div>
-            <h3>Graphique</h3>
-            <div id="chart-container"> <canvas id="graphCanvas"></canvas> </div>
+            <?php } 
+                else if(!empty($lesMontantsGraph)) { ?>
+            <div id="chart-container">
+                <h3>Graphique</h3> 
+                <canvas id="graphCanvas"></canvas> 
+            </div>
         <?php } ?>
     </div>
 </div>

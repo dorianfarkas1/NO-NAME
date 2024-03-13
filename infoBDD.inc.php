@@ -2,5 +2,5 @@
     $_ENV["login"] = "admin";
     $_ENV["mdp"] = "root";
     $_ENV["bdd"] = "tableau_bord";
-    $_ENV["serveur"] = "172.30.0.61";
+    $_ENV["serveur"] = "localhost";
 ?>
