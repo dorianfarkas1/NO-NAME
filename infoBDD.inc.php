@@ -1,6 +1,6 @@
 <?php
-    $_ENV["login"] = "root";
-    $_ENV["mdp"] = "";
+    $_ENV["login"] = "admin";
+    $_ENV["mdp"] = "root";
     $_ENV["bdd"] = "tableau_bord";
-    $_ENV["serveur"] = "localhost";
+    $_ENV["serveur"] = "172.30.0.61";
 ?>
